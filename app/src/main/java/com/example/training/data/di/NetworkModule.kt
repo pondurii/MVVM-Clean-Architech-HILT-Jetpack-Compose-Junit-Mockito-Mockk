@@ -27,8 +27,6 @@ object NetworkModule {
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         return OkHttpClient.Builder()
-           // .addInterceptor(HeaderInterceptor())
-            //.addInterceptor(NetworkConnectionInterceptor(context))
             .addInterceptor(loggingInterceptor)
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)

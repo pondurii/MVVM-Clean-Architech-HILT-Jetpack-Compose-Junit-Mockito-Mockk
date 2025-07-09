@@ -5,8 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
-
-    @GET("/products")
+    @GET("/v1/ba83287f-3a51-4878-8502-5e0f5fe898fe")
     suspend fun getAllProductListAPI() : List<ProductListDTO>
 
     @GET("/products/{Id}")

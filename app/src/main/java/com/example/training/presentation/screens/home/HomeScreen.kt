@@ -18,6 +18,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -34,8 +36,14 @@ import com.example.training.domain.model.Product
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
+
     val context = LocalContext.current
-    val result = viewModel.productList.value
+    val result = viewModel.productList.collectAsState().value
+
+
+    LaunchedEffect(Unit) {
+        viewModel.getProducts()
+    }
 
     if (result.isLoading) {
         Column(
@@ -73,20 +81,33 @@ fun HomeScreen(
 
 @Composable
 fun listItem(category: Product, onItemClick: (Product) -> Unit) {
-    Card(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(5.dp).clickable {
-                onItemClick(category)
-            }) {
+            modifier = Modifier
+                .padding(5.dp)
+                .clickable {
+                    onItemClick(category)
+                }) {
             Image(
-                modifier = Modifier.size(200.dp).padding(8.dp).weight(0.4f),
+                modifier = Modifier
+                    .size(200.dp)
+                    .padding(8.dp)
+                    .weight(0.4f),
                 painter = rememberAsyncImagePainter(category.image),
                 contentDescription = ""
             )
             userDescription(category, Modifier.weight(0.6f))
         }
-        Spacer(modifier = Modifier.fillMaxWidth().height(1.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp)
+        )
     }
 }
 

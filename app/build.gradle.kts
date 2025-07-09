@@ -71,4 +71,18 @@ dependencies {
 
     //coil
     implementation(libs.coil.compose)
+
+    //unit test cases
+    //testImplementation("junit:junit:4.13.2")
+    //testImplementation("org.mockito:mockito-core:4.11.0") // Or a more recent stable version
+    //testImplementation("org.mockito.kotlin:mockito-kotlin:4.11.0") // Or latest
+    //testImplementation("androidx.arch.core:core-testing:2.2.0") // For InstantTaskExecutorRule if testing LiveData, but good for main thread dispatcher
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("org.mockito:mockito-core:5.2.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.12.0") // or latest version
+
+
 }
